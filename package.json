@@ -1,0 +1,16 @@
+{
+  "name": "domolo_server",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "express": "^4.0.0",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "chance": "^0.5.9",
+    "mocha": "^1.18.2",
+    "node-inspector": "^0.12.3",
+    "supertest": "^0.13.0"
+  }
+}

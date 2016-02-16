@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Tv</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-git2.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<style>
+.btn:focus, .btn:active{
+        outline: none;
+}
+
+*:active{
+        outline: none;
+}
+</style>
+
+</head>
+<body>
+    <div style="margin: auto;">
+        <table id="container" style="margin: auto;">
+            <tr><td colspan="3"><button onclick="sendKey('KEY_POWER');" style="width: 120px; margin: auto;" type="button" class="btn btn-danger"><i class="fa fa-power-off"></i></button></td></tr>
+            <tr>
+                <td><button onclick="sendKey('KEY_7');" type="button" class="btn btn-default">7</button></td>
+                <td><button onclick="sendKey('KEY_8');" type="button" class="btn btn-default">8</button></td>
+                <td><button onclick="sendKey('KEY_9');" type="button" class="btn btn-default">9</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="sendKey('KEY_4');" type="button" class="btn btn-default">4</button></td>
+                <td><button onclick="sendKey('KEY_5');" type="button" class="btn btn-default">5</button></td>
+                <td><button onclick="sendKey('KEY_6');" type="button" class="btn btn-default">6</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="sendKey('KEY_1');" type="button" class="btn btn-default">1</button></td>
+                <td><button onclick="sendKey('KEY_2');" type="button" class="btn btn-default">2</button></td>
+                <td><button onclick="sendKey('KEY_3');" type="button" class="btn btn-default">3</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button onclick="sendKey('KEY_0');" type="button" class="btn btn-default">0</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button onclick="sendKey('KEY_VOLUMEUP');" type="button" class="btn btn-default"><i class="fa fa-volume-up"></i></button></td>
+                <td rowspan="2"><button onclick="sendKey('KEY_MUTE');" type="button" class="btn btn-default"><i class="fa fa-bell-slash-o"></i></button></td>
+                <td><button onclick="sendKey('KEY_CHANNELUP');" type="button" class="btn btn-default"><i class="fa fa-plus"></i></button></td>
+            </tr>
+            <tr>
+                <td><button onclick="sendKey('KEY_VOLUMEDOWN');" type="button" class="btn btn-default"><i class="fa fa-volume-down"></i></button></td>
+
+                <td><button onclick="sendKey('KEY_CHANNELDOWN');" type="button" class="btn btn-default"><i class="fa fa-minus"></i></button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+<script>
+    function sendKey(keyId){
+        var xhttp = new XMLHttpRequest();
+        var path = "http://192.168.1.102:3000/tv/" + keyId;
+        xhttp.open("GET", path, true);
+        xhttp.send();
+    }
+
+    $( document).ready(function () {
+        resizeRemote();
+    })
+
+    $( window ).resize(function() {
+        resizeRemote();
+    })
+
+    function resizeRemote(){
+        var height = $( window ).height();
+        var width = 0.42*height; // 0.42 ratio = 7 rows / 3 columns
+
+        $( "#container" ).width(width);
+        $( "#container" ).height(height);
+        $( "td" ).height(width/3);
+        $( ".btn" ).outerWidth("100%");
+        $( ".btn" ).outerHeight("100%");
+    }
+</script>
+</html>
+
+
